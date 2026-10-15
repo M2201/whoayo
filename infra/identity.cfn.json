@@ -1,0 +1,119 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Origin Studio invited-pilot identity foundation only. Does not deploy the app, migrate accounts, configure DNS, or open enrollment.",
+  "Parameters": {
+    "PublicOrigin": {
+      "Type": "String",
+      "Description": "Owned, TLS-enabled origin; no path or trailing slash. Domain ownership must be verified before deployment.",
+      "AllowedPattern": "https://[a-z0-9][a-z0-9.-]*\\.[a-z]{2,}"
+    },
+    "DomainPrefix": {
+      "Type": "String",
+      "Description": "Unique Cognito managed-login prefix, not the application's custom domain.",
+      "AllowedPattern": "[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?"
+    }
+  },
+  "Resources": {
+    "UserPool": {
+      "Type": "AWS::Cognito::UserPool",
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain",
+      "Properties": {
+        "UserPoolName": "origin-studio-invited-pilot",
+        "UserPoolTier": "ESSENTIALS",
+        "DeletionProtection": "ACTIVE",
+        "UsernameAttributes": ["email"],
+        "UsernameConfiguration": { "CaseSensitive": false },
+        "AutoVerifiedAttributes": ["email"],
+        "UserAttributeUpdateSettings": {
+          "AttributesRequireVerificationBeforeUpdate": ["email"]
+        },
+        "AdminCreateUserConfig": { "AllowAdminCreateUserOnly": true },
+        "MfaConfiguration": "ON",
+        "EnabledMfas": ["SOFTWARE_TOKEN_MFA"],
+        "AccountRecoverySetting": {
+          "RecoveryMechanisms": [{ "Name": "verified_email", "Priority": 1 }]
+        },
+        "EmailConfiguration": { "EmailSendingAccount": "COGNITO_DEFAULT" },
+        "Policies": {
+          "PasswordPolicy": {
+            "MinimumLength": 12,
+            "RequireLowercase": false,
+            "RequireUppercase": false,
+            "RequireNumbers": false,
+            "RequireSymbols": false,
+            "TemporaryPasswordValidityDays": 1
+          }
+        },
+        "Schema": [
+          {
+            "Name": "email",
+            "AttributeDataType": "String",
+            "Required": true,
+            "Mutable": true
+          },
+          {
+            "Name": "name",
+            "AttributeDataType": "String",
+            "Required": false,
+            "Mutable": true
+          }
+        ]
+      }
+    },
+    "WebClient": {
+      "Type": "AWS::Cognito::UserPoolClient",
+      "Properties": {
+        "UserPoolId": { "Ref": "UserPool" },
+        "ClientName": "origin-studio-web",
+        "GenerateSecret": false,
+        "AllowedOAuthFlowsUserPoolClient": true,
+        "AllowedOAuthFlows": ["code"],
+        "AllowedOAuthScopes": ["openid", "email", "profile"],
+        "SupportedIdentityProviders": ["COGNITO"],
+        "CallbackURLs": [
+          { "Fn::Sub": "${PublicOrigin}/api/identity/callback" }
+        ],
+        "LogoutURLs": [{ "Ref": "PublicOrigin" }],
+        "PreventUserExistenceErrors": "ENABLED",
+        "EnableTokenRevocation": true,
+        "EnablePropagateAdditionalUserContextData": false,
+        "AuthSessionValidity": 3,
+        "AccessTokenValidity": 15,
+        "IdTokenValidity": 15,
+        "RefreshTokenValidity": 1,
+        "TokenValidityUnits": {
+          "AccessToken": "minutes",
+          "IdToken": "minutes",
+          "RefreshToken": "days"
+        },
+        "ReadAttributes": ["email", "email_verified", "name"],
+        "WriteAttributes": ["email", "name"],
+        "ExplicitAuthFlows": ["ALLOW_REFRESH_TOKEN_AUTH"]
+      }
+    },
+    "LoginDomain": {
+      "Type": "AWS::Cognito::UserPoolDomain",
+      "Properties": {
+        "Domain": { "Ref": "DomainPrefix" },
+        "UserPoolId": { "Ref": "UserPool" },
+        "ManagedLoginVersion": 2
+      }
+    },
+    "LoginBranding": {
+      "Type": "AWS::Cognito::ManagedLoginBranding",
+      "Properties": {
+        "UserPoolId": { "Ref": "UserPool" },
+        "ClientId": { "Ref": "WebClient" },
+        "UseCognitoProvidedValues": true
+      }
+    }
+  },
+  "Outputs": {
+    "PoolId": { "Value": { "Ref": "UserPool" } },
+    "ClientId": { "Value": { "Ref": "WebClient" } },
+    "Region": { "Value": { "Ref": "AWS::Region" } },
+    "DomainPrefix": { "Value": { "Ref": "DomainPrefix" } },
+    "PublicOrigin": { "Value": { "Ref": "PublicOrigin" } }
+  }
+}

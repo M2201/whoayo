@@ -1,0 +1,44 @@
+{
+  "schema": "whoayo-unit-economics/1",
+  "status": "proposed-not-live",
+  "currency": "USD",
+  "weeklyRevenueTargetCents": 1000000,
+  "grossMarginFloorBasisPoints": 4000,
+  "paymentFeeBasisPoints": 290,
+  "paymentFeeFlatCents": 30,
+  "tiers": [
+    {
+      "name": "Builder",
+      "monthlyPriceCents": 9900,
+      "targetAccounts": 175,
+      "directCogsPerAccountCents": {
+        "aiAllowance": 2000,
+        "hostingAndStorage": 700,
+        "directSupport": 1000,
+        "timestampsAndOther": 100
+      }
+    },
+    {
+      "name": "Studio",
+      "monthlyPriceCents": 24900,
+      "targetAccounts": 75,
+      "directCogsPerAccountCents": {
+        "aiAllowance": 5000,
+        "hostingAndStorage": 1800,
+        "directSupport": 2500,
+        "timestampsAndOther": 200
+      }
+    },
+    {
+      "name": "Organization",
+      "monthlyPriceCents": 79900,
+      "targetAccounts": 10,
+      "directCogsPerAccountCents": {
+        "aiAllowance": 16000,
+        "hostingAndStorage": 6000,
+        "directSupport": 8000,
+        "timestampsAndOther": 800
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "origin-public-concept-evidence/1",
+  "title": "Origin Studio concept",
+  "coveredVersion": "Preserved concept package, revision 2",
+  "attestedAt": "2026-10-05T04:52:27Z",
+  "mappingCheckedOn": "2026-10-09",
+  "explorerCheckedAt": "2026-10-07T03:33:12.039Z",
+  "method": "public-explorer-cross-check",
+  "localNodeVerified": false,
+  "payloadSha256": "f92e421413a46b82d7d508accb30b803ffaf29117d5d96988722a7d86e4636c2",
+  "completedProofSha256": "dcd36bde9b85d4a51dfac1783ceb7a99cfadc51c4d97e6ab95f244bfcfa58305",
+  "blockHeights": [969956, 969961]
+}

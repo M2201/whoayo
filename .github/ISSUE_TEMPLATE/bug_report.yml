@@ -1,0 +1,51 @@
+name: Bug report
+description: Report a reproducible problem using synthetic data only.
+title: "[Bug]: "
+labels: [bug, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include private ideas, prompts, credentials, evidence packages, nonces, customer data or private paths. Use the private security process for vulnerabilities.
+  - type: input
+    id: commit
+    attributes:
+      label: Version or commit
+      description: Exact tag or commit SHA where the problem occurs.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system and Node version; do not include usernames or private paths.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Synthetic reproduction
+      description: Minimal steps and synthetic inputs only.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed credentials, private concepts, evidence packages, customer data and private paths.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true

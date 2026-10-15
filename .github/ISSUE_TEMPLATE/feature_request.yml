@@ -1,0 +1,36 @@
+name: Feature request
+description: Propose a focused product improvement without private source material.
+title: "[Feature]: "
+labels: [enhancement, needs-triage]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Describe the job or risk, not just a preferred implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Privacy, evidence and spending boundaries
+      description: What must remain private, human-approved or cost-bounded?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: safe
+    attributes:
+      label: Source check
+      options:
+        - label: This proposal contains no private idea, customer data, credential or evidence package.
+          required: true

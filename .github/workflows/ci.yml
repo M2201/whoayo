@@ -1,0 +1,36 @@
+name: Verify source
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Use Node 24
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24.13.0"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Check reviewed source allowlist
+        run: npm run check:source
+      - name: Run synthetic tests
+        run: npm test
+      - name: Build production assets
+        run: npm run build
+      - name: Check proposed business floors
+        run: npm run check:business
