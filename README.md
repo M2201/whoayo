@@ -1,5 +1,7 @@
 # WHOAYO
 
+[![Verify source](https://github.com/M2201/whoayo/actions/workflows/ci.yml/badge.svg)](https://github.com/M2201/whoayo/actions/workflows/ci.yml)
+
 WHOAYO is an idea-provenance and privacy-controlled AI workspace by Mandle
 Rousseau, previously developed under the Origin Studio name.
 
@@ -20,6 +22,10 @@ Most AI workspaces begin after a prompt is sent. WHOAYO begins before disclosure
 That makes WHOAYO an evidence and control layer around AI, not a claim that a hash establishes ownership, originality, patentability or legal priority.
 
 The community source is licensed **AGPL-3.0-only** for local/self-hosted adoption at [M2201/whoayo](https://github.com/M2201/whoayo). Contributions are issues-only initially. See [license](LICENSE), [public release](docs/PUBLIC-RELEASE.md), [roadmap](docs/ROADMAP.md), [security policy](SECURITY.md) and [contributing](CONTRIBUTING.md). The WHOAYO name and logo are not a grant of trademark rights.
+
+![WHOAYO workspace with synthetic example content](public/origin-workspace-preview.jpg)
+
+*Synthetic local workspace preview. No customer content or live service is shown.*
 
 ## Run
 

@@ -1,9 +1,9 @@
 # Local Evaluation Release 0.1.0
 
-## Public Source Candidate — October 14, 2026
+## Public Source Release — October 14, 2026 local / October 15 UTC
 
-WHOAYO is a local evaluation foundation. Public source publication at
-`M2201/whoayo` under AGPL-3.0-only is approved, with issues-only contributions
+WHOAYO is a local evaluation foundation. Public source is published at
+[M2201/whoayo](https://github.com/M2201/whoayo) under AGPL-3.0-only, with issues-only contributions
 initially. This does not activate a hosted service, paid plan or live payment.
 
 The public commit history starts from this reviewed source snapshot. Earlier
@@ -40,10 +40,18 @@ preparation. Historical implementation logs are not a runtime-health claim.
 
 ### Verification
 
-The final candidate is verified with `npm test`, `npm run build`,
-`npm run check:source`, `npm run check:business` and `git diff --check`.
-Publish the exact final counts and GitHub checks in the release handoff after
-the final source snapshot and clean-clone verification.
+Initial public commit: `56c37bc69d4a863a35e39ada13fa9a3aede42cc1`.
+
+- An independent clone from GitHub completed `npm ci` with zero reported dependency vulnerabilities at check time.
+- `npm test`: **177 passed, zero failed/skipped**.
+- `npm run build`: passed; main JavaScript 436.76 KB / 131.02 KB gzip, CSS 66.45 KB / 14.37 KB gzip.
+- `npm run check:source`: **123 reviewed files, zero findings**; staged source and whitespace checks passed before commit.
+- `npm run check:business`: proposed weekly-revenue and margin floors passed, not actual revenue verification.
+- `npm run release:check`: every recorded source-release gate passed.
+- [GitHub Linux verification](https://github.com/M2201/whoayo/actions/runs/38680170889): passed for the initial public commit.
+- GitHub readback confirmed public visibility, AGPL license detection, private vulnerability reporting, dependency alerts, secret scanning and secret push protection.
+
+These checks are not an independent security audit or hosted-customer acceptance.
 
 Synthetic browser checks cover inactive/processing and active/cancel-at-period-end
 billing displays at 1440, 390 and 320 pixels. No measured horizontal overflow or

@@ -1,6 +1,6 @@
 # Origin Studio
 
-This is the private development-workspace component of the AI Initiative by MR. Rousseau. It is a separate repository with separate accounts, keys, records and approvals. The surrounding directory name is historical, not project identity or permission to change a different application.
+This is WHOAYO's public source repository. Private development history, accounts, keys and evidence remain separate. Never merge or push the original private development history into this repository. No other project's accounts, credentials or approvals transfer here.
 
 Before edits, confirm `git rev-parse --show-toplevel`, `git status --short --branch`, and `npm run check:source`. Read `README.md`, `docs/SECURITY-RECOVERY.md`, and the latest checkpoint in `docs/RELEASE-STATUS.md`. Preserve existing work.
 
