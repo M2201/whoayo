@@ -1,5 +1,24 @@
 # Local Evaluation Release 0.1.0
 
+## Read-only Render preparation — October 15, 2026
+
+A separate public-preview entry and server are prepared for the first hosting
+acceptance stage. They do not load the private app, accept accounts or uploads,
+make provider requests, or enable payments. Only the reviewed public presentation
+and a content-free health response are served. A synthetic SQLite probe tests
+the dedicated persistent disk; it is not a customer vault or backup.
+
+Local verification: **183 tests passed**, both builds passed, **129 reviewed
+source files / zero scan findings**, business/release checks passed. Desktop and
+390-pixel browser checks found no horizontal overflow, forms or console errors.
+The synthetic probe retained its identity and incremented its boot count across
+a local restart. Live Render deployment, HTTPS and persistent-disk acceptance
+must be checked separately. See [Render pilot](RENDER-PILOT.md).
+
+The existing loopback app and private evidence are unchanged. Customer access,
+identity/recovery, independent backups, KMS and real billing acceptance remain
+closed gates. This checkpoint is not a customer-launch claim.
+
 ## Public Source Release — October 14, 2026 local / October 15 UTC
 
 WHOAYO is a local evaluation foundation. Public source is published at

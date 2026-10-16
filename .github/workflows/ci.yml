@@ -32,5 +32,7 @@ jobs:
         run: npm test
       - name: Build production assets
         run: npm run build
+      - name: Build isolated read-only Render preview
+        run: npm run build:render
       - name: Check proposed business floors
         run: npm run check:business

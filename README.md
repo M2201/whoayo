@@ -9,6 +9,10 @@ Rousseau, previously developed under the Origin Studio name.
 
 This is an implemented local foundation, not a hosted product or feature-complete replacement for ChatGPT, Claude, or a coding IDE.
 
+A separate [read-only Render pilot](docs/RENDER-PILOT.md) can serve the public
+introduction while hosting is tested. It cannot create accounts, accept private
+ideas, run AI or charge customers. It does not expose the local workspace server.
+
 ## Why WHOAYO
 
 Most AI workspaces begin after a prompt is sent. WHOAYO begins before disclosure:

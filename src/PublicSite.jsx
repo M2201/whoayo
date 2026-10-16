@@ -203,7 +203,12 @@ function WorkflowExample() {
   );
 }
 
-export default function PublicSite({ children, signedIn, onAccount }) {
+export default function PublicSite({
+  children,
+  signedIn,
+  onAccount,
+  hostedPreview = false,
+}) {
   const root = useRef(null);
   return (
     <div className="public-site story-site" ref={root}>
@@ -220,7 +225,11 @@ export default function PublicSite({ children, signedIn, onAccount }) {
           <a href="#workflow">The workflow</a>
           <a href="#questions">Questions</a>
         </nav>
-        {signedIn ? (
+        {hostedPreview ? (
+          <a className="site-nav-action" href="#account">
+            Read-only pilot <ArrowUpRight size={16} />
+          </a>
+        ) : signedIn ? (
           <a className="site-nav-action" href="/">
             Workspace <ArrowUpRight size={16} />
           </a>
@@ -305,7 +314,11 @@ export default function PublicSite({ children, signedIn, onAccount }) {
               </a>
               <div className="story-hero-entry">
                 <div className="story-hero-actions">
-                  {signedIn ? (
+                  {hostedPreview ? (
+                    <a className="site-cta" href="#account">
+                      Explore the project <ArrowUpRight size={18} />
+                    </a>
+                  ) : signedIn ? (
                     <a className="site-cta" href="/">
                       Open your workspace <ArrowUpRight size={18} />
                     </a>
@@ -322,7 +335,9 @@ export default function PublicSite({ children, signedIn, onAccount }) {
                   </a>
                 </div>
                 <p className="story-release">
-                  Local preview / Public sign-up not open
+                  {hostedPreview
+                    ? "Read-only hosting pilot / Accounts and payments closed"
+                    : "Local preview / Public sign-up not open"}
                 </p>
               </div>
             </div>
@@ -511,7 +526,9 @@ export default function PublicSite({ children, signedIn, onAccount }) {
                   <Plus size={18} />
                 </summary>
                 <p>
-                  Not yet. This preview creates accounts on this Mac only.
+                  {hostedPreview
+                    ? "Not yet. This hosted preview does not create accounts or accept private ideas. "
+                    : "Not yet. This preview creates accounts on this Mac only. "}
                   Hosted sign-up, verified email, password recovery and
                   cross-device access must be connected before public launch.
                 </p>
@@ -536,10 +553,15 @@ export default function PublicSite({ children, signedIn, onAccount }) {
               <div className="join-availability">
                 <Clock3 size={20} />
                 <div>
-                  <strong>Local evaluation is available.</strong>
+                  <strong>
+                    {hostedPreview
+                      ? "Read-only hosting pilot."
+                      : "Local evaluation is available."}
+                  </strong>
                   <p>
-                    Public accounts are not open yet. This preview stays on this
-                    Mac; it is not a hosted service.
+                    {hostedPreview
+                      ? "Public accounts are not open. Identity, recovery and backup acceptance must be completed before customer access."
+                      : "Public accounts are not open yet. This preview stays on this Mac; it is not a hosted service."}
                   </p>
                 </div>
               </div>
