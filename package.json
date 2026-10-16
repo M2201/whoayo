@@ -9,6 +9,8 @@
   },
   "scripts": {
     "build": "vite build",
+    "build:render": "vite build --config vite.render.config.mjs",
+    "start:render": "node server/render-preview.mjs",
     "start": "node server/http.mjs",
     "start:connected": "node --env-file=.env.local server/http.mjs",
     "connect:openai": "node scripts/configure-openai.mjs",

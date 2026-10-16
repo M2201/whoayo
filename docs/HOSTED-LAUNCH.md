@@ -27,6 +27,13 @@ Keep the public-domain parameter unset until an owned name is selected and verif
 
 ## Next Vertical Slice: Provisioned Invited Pilot
 
+The owner selected paid Render application hosting on October 15, 2026. The
+initial [read-only infrastructure pilot](RENDER-PILOT.md) is separate from the
+invited customer application: it serves only public presentation assets and an
+isolated synthetic persistence probe. Render hosting does not itself provision
+the prepared AWS identity/KMS components. Those accounts, costs and live
+acceptance remain separate gates; no AWS application-compute purchase is implied.
+
 1. Confirm an owned public origin, dedicated AWS account/region and itemized provisioning estimate. Obtain the resource/IAM and deployment approval for that exact target. Do not infer account access or reuse credentials from unrelated projects.
 2. Validate and provision the retained invited-only identity template, then place the existing exact-origin HTTP mode behind reviewed TLS ingress. Keep the application process loopback-bound; do not treat a public tunnel as protected ingress.
 3. Persist login transactions in a TTL-bound shared encrypted store before multi-instance hosting. The current bounded in-memory transactions deliberately expire on restart and cannot cross instances. Add infrastructure rate limits and sanitized operational logs without recording callback codes or tokens.
